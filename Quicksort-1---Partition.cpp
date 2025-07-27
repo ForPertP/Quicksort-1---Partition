@@ -139,15 +139,6 @@ string rtrim(const string &str)
     return s;
 }
 
-string rtrim(const string &str)
-{
-    string s(str);
-    s.erase(
-        find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !isspace(ch); }).base(), s.end()
-    );
-    return s;
-}
-
 std::vector<string> split(const string &str)
 {
     vector<string> tokens;
@@ -157,18 +148,17 @@ std::vector<string> split(const string &str)
 
     while ((end = str_view.find(' ', start)) != string_view::npos)
     {
-        if (start < end)
+        if (end > start)
         {
-            tokens.emplace_back(str_view.substr(start, end - start)));
+            tokens.emplace_back(str_view.substr(start, end - start));
         }
         start = end + 1;
     }
 
-    if (start < str.size())
+    if (start < str_view.size())
     {
         tokens.emplace_back(str_view.substr(start));
     }
 
     return tokens;
 }
-
