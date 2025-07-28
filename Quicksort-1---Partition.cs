@@ -22,6 +22,47 @@ class Result
      * The function accepts INTEGER_ARRAY arr as parameter.
      */
 
+    public static List<int> quickSort(List<int> arr)
+    {
+        quickSort(arr, 0, arr.Count - 1);
+        return arr;
+    }
+
+    private static void quickSort(List<int> arr, int begin, int end)
+    {
+        if (end - begin + 1 <= 3)
+        {
+            BubbleSort(arr, begin, end);
+            return;
+        }
+
+        int mid = begin + (end - begin) / 2;
+        MedianSort(arr, begin, mid, end);
+
+        int pivot = arr[mid];
+        Swap(arr, mid, end - 1);
+
+        int i = begin;
+        int j = end - 1;
+
+        while (true)
+        {
+            while (++i < end && arr[i] < pivot) ;
+            while (--j > begin && arr[j] > pivot) ;
+
+            if (i >= j)
+                break;
+
+            Swap(arr, i, j);
+        }
+
+        Swap(arr, i, end - 1);
+
+        quickSort(arr, begin, i - 1);
+        quickSort(arr, i + 1, end);
+    }
+}
+
 class Solution
 {
     public static void Main(string[] args)
