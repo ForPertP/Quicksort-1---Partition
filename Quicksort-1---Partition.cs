@@ -61,6 +61,21 @@ class Result
         quickSort(arr, begin, i - 1);
         quickSort(arr, i + 1, end);
     }
+
+    private static void MedianSort(List<int> arr, int begin, int mid, int end)
+    {
+        if (arr[begin] > arr[mid]) Swap(arr, begin, mid);
+        if (arr[mid] > arr[end]) Swap(arr, mid, end);
+        if (arr[begin] > arr[mid]) Swap(arr, begin, mid);
+    }
+
+    private static void Swap(List<int> arr, int i, int j)
+    {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
 }
 
 class Solution
