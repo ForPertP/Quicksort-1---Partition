@@ -76,6 +76,19 @@ class Result
         arr[j] = temp;
     }
 
+    private static void BubbleSort(List<int> arr, int begin, int end)
+    {
+        for (int i = begin; i <= end; i++)
+        {
+            for (int j = i + 1; j <= end; j++)
+            {
+                if (arr[j] < arr[i])
+                {
+                    Swap(arr, i, j);
+                }
+            }
+        }
+    }
 }
 
 class Solution
